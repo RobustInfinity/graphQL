@@ -3,7 +3,7 @@ const express = require('express')
 
 const bodyParser = require('body-parser')
 
-const graphQLHTTP = require('express-graphql')
+const graphqlHttp = require('express-graphql')
 
 const graphql =  require('graphql')
 
