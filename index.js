@@ -17,16 +17,20 @@ const auth = require('./config/auth')
 app.use(bodyParser.json());
 
 const schema = require('./graphql/')
-
-app.use('/api',graphqlHttp({
-    
-    schema,
-    graphiql : true
-
-}))
+// var mw = function(req, res, next){
+//     console.log(req)
+//     next()
+// }
 
 
 
+app.use('/',(request, response)=>{
+    return graphqlHttp({
+        schema,
+        graphiql : true,
+        context : {request : request, response : response}   
+    })(request, response)
+})
 
 mongoose.connect(config.DB_URL,{ useNewUrlParser: true })
     .then(()=>{
@@ -35,7 +39,7 @@ mongoose.connect(config.DB_URL,{ useNewUrlParser: true })
     .catch((err)=>{
         console.log(err)
     })
-app.listen(3000,()=>{
+app.listen(8080,()=>{
     console.log('Server started at port 3000')
 })
 

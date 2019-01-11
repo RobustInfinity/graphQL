@@ -13,13 +13,6 @@ const CourseQuery = `
         description : String!
         videoCount : String!
     }
-    type Query {
-        course(courseId : String!) : Course
-    }
-
-    type Mutation {
-        createCourse(courseInput : CourseInput) : Course!
-    }
 `
 
 module.exports = CourseQuery
